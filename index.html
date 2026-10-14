@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMKM ROBBANI - Snack Tradisional Berkualitas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ===== RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+:root{
+  --primary:#10b981;--primary-dark:#059669;--primary-light:#d1fae5;
+  --secondary:#0f172a;--text:#334155;--text-light:#64748b;
+  --bg:#f8fafc;--white:#fff;--border:#e2e8f0;--danger:#ef4444;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-lg:0 10px 40px rgba(0,0,0,0.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.highlight{color:var(--primary)}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:none;transition:all .3s}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 15px rgba(16,185,129,.3)}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(16,185,129,.4)}
+.btn-outline{background:transparent;color:var(--secondary);border:2px solid var(--border)}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.btn-full{width:100%;justify-content:center}
+
+/* ===== NAVBAR ===== */
+.navbar{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.nav-container{display:flex;align-items:center;justify-content:space-between;padding:15px 20px}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;color:var(--secondary);text-decoration:none}
+.logo i{color:var(--primary);font-size:24px}
+.logo b{color:var(--primary)}
+.nav-menu{display:flex;gap:30px}
+.nav-menu a{text-decoration:none;color:var(--text);font-weight:500;font-size:15px;transition:color .3s;position:relative}
+.nav-menu a:hover{color:var(--primary)}
+.nav-menu a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary);transition:width .3s}
+.nav-menu a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.cart-btn{position:relative;background:var(--primary);color:#fff;border:none;width:45px;height:45px;border-radius:50%;cursor:pointer;font-size:18px;transition:all .3s}
+.cart-btn:hover{background:var(--primary-dark);transform:scale(1.05)}
+.cart-count{position:absolute;top:-5px;right:-5px;background:var(--danger);color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.menu-toggle{display:none;background:none;border:none;font-size:22px;color:var(--secondary);cursor:pointer}
+
+/* ===== HERO ===== */
+.hero{padding:60px 0;background:linear-gradient(135deg,#f0fdf4 0%,#f8fafc 100%)}
+.hero-content{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.badge{display:inline-block;background:var(--primary-light);color:var(--primary-dark);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px}
+.hero-text h1{font-size:48px;line-height:1.2;color:var(--secondary);margin-bottom:20px;font-weight:800}
+.hero-text p{font-size:16px;color:var(--text-light);margin-bottom:30px;max-width:500px}
+.hero-buttons{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stats{display:flex;gap:40px}
+.hero-stats div{display:flex;flex-direction:column}
+.hero-stats b{font-size:24px;color:var(--secondary)}
+.hero-stats span{font-size:13px;color:var(--text-light)}
+.hero-image img{width:100%;height:420px;object-fit:cover;border-radius:20px;box-shadow:var(--shadow-lg)}
+
+/* ===== SECTION HEADER ===== */
+.section-header{text-align:center;margin-bottom:50px}
+.section-badge{display:inline-block;background:var(--primary-light);color:var(--primary-dark);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:15px}
+.section-header h2{font-size:38px;color:var(--secondary);margin-bottom:10px;font-weight:800}
+.section-header p{color:var(--text-light)}
+
+/* ===== KATALOG ===== */
+.katalog{padding:80px 0}
+.filter-kategori{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.filter-btn{padding:10px 20px;border-radius:25px;border:2px solid var(--border);background:#fff;color:var(--text);font-weight:500;cursor:pointer;transition:all .3s;font-size:14px}
+.filter-btn:hover,.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.produk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:25px}
+.produk-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:all .3s;display:flex;flex-direction:column}
+.produk-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.produk-image{position:relative;height:220px;overflow:hidden;background:#f1f5f9}
+.produk-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.produk-card:hover .produk-image img{transform:scale(1.08)}
+.produk-kategori{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.95);color:var(--primary-dark);padding:4px 12px;border-radius:15px;font-size:11px;font-weight:600;text-transform:capitalize;z-index:2}
+.produk-body{padding:18px;display:flex;flex-direction:column;flex:1}
+.produk-nama{font-size:16px;font-weight:600;color:var(--secondary);margin-bottom:6px}
+.produk-deskripsi{font-size:13px;color:var(--text-light);margin-bottom:12px;flex:1}
+.produk-harga{font-size:20px;font-weight:700;color:var(--primary);margin-bottom:12px}
+.btn-tambah{width:100%;padding:10px;border-radius:10px;background:var(--primary);color:#fff;border:none;font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s}
+.btn-tambah:hover{background:var(--primary-dark)}
+
+/* ===== TENTANG ===== */
+.tentang{padding:80px 0;background:#fff}
+.tentang-content{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.tentang-image img{width:100%;height:420px;object-fit:cover;border-radius:20px;box-shadow:var(--shadow-lg)}
+.tentang-text h2{font-size:36px;color:var(--secondary);margin:15px 0 20px;font-weight:800}
+.tentang-text p{color:var(--text-light);margin-bottom:25px}
+.tentang-list{list-style:none}
+.tentang-list li{display:flex;align-items:center;gap:12px;padding:8px 0;color:var(--text);font-weight:500}
+.tentang-list i{color:var(--primary);font-size:18px}
+
+/* ===== KONTAK ===== */
+.kontak{padding:80px 0}
+.kontak-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.kontak-card{background:#fff;padding:30px 20px;border-radius:16px;text-align:center;box-shadow:var(--shadow);text-decoration:none;color:var(--text);transition:all .3s}
+.kontak-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.kontak-card i{font-size:32px;color:var(--primary);margin-bottom:15px}
+.kontak-card h3{font-size:17px;color:var(--secondary);margin-bottom:5px}
+.kontak-card p{font-size:14px;color:var(--text-light)}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--secondary);color:#fff;text-align:center;padding:30px 0;font-size:14px}
+.footer b{color:var(--primary)}
+
+/* ===== CART SIDEBAR ===== */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:all .3s;z-index:1500}
+.cart-overlay.active{opacity:1;visibility:visible}
+.cart-sidebar{position:fixed;top:0;right:-420px;width:400px;max-width:90vw;height:100vh;background:#fff;z-index:2000;display:flex;flex-direction:column;transition:right .3s ease;box-shadow:-10px 0 30px rgba(0,0,0,.1)}
+.cart-sidebar.active{right:0}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:20px;border-bottom:1px solid var(--border)}
+.cart-header h3{font-size:18px;color:var(--secondary);display:flex;align-items:center;gap:10px}
+.cart-header i{color:var(--primary)}
+.cart-close{background:none;border:none;font-size:20px;color:var(--text-light);cursor:pointer;width:35px;height:35px;border-radius:50%;transition:all .3s}
+.cart-close:hover{background:var(--bg);color:var(--danger)}
+.cart-items{flex:1;overflow-y:auto;padding:20px}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--text-light)}
+.cart-empty i{font-size:60px;color:var(--border);margin-bottom:15px}
+.cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.cart-item img{width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-nama{font-size:14px;font-weight:600;color:var(--secondary);margin-bottom:4px}
+.cart-item-harga{font-size:14px;color:var(--primary);font-weight:600;margin-bottom:8px}
+.cart-item-qty{display:flex;align-items:center;gap:8px}
+.qty-btn{width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s}
+.qty-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.qty-value{font-size:14px;font-weight:600;min-width:25px;text-align:center}
+.cart-item-remove{background:none;border:none;color:var(--danger);cursor:pointer;font-size:14px;padding:5px;align-self:flex-start}
+.cart-footer{padding:20px;border-top:1px solid var(--border);background:var(--bg)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;font-size:16px}
+.cart-total b{font-size:22px;color:var(--primary);font-weight:700}
+
+/* ===== MODAL CHECKOUT ===== */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:3000;padding:20px;overflow-y:auto}
+.modal.active{display:flex}
+.modal-content{background:#fff;border-radius:20px;width:100%;max-width:550px;max-height:90vh;display:flex;flex-direction:column;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 25px;border-bottom:1px solid var(--border)}
+.modal-header h3{font-size:18px;color:var(--secondary);display:flex;align-items:center;gap:10px}
+.modal-header i{color:var(--primary)}
+.modal-close{background:none;border:none;font-size:20px;color:var(--text-light);cursor:pointer;width:35px;height:35px;border-radius:50%;transition:all .3s}
+.modal-close:hover{background:var(--bg);color:var(--danger)}
+.modal-body{padding:25px;overflow-y:auto}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:14px;font-weight:600;color:var(--secondary);margin-bottom:8px}
+.form-group input,.form-group textarea{width:100%;padding:12px 15px;border-radius:10px;border:2px solid var(--border);font-size:14px;font-family:inherit;transition:all .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
+.form-group textarea{resize:vertical}
+.payment-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.payment-option{cursor:pointer}
+.payment-option input{display:none}
+.payment-card{border:2px solid var(--border);border-radius:10px;padding:15px 10px;text-align:center;transition:all .3s}
+.payment-card i{display:block;font-size:22px;color:var(--text-light);margin-bottom:6px}
+.payment-card span{font-size:12px;font-weight:600;color:var(--text)}
+.payment-option input:checked + .payment-card{border-color:var(--primary);background:var(--primary-light)}
+.payment-option input:checked + .payment-card i{color:var(--primary)}
+.payment-option input:checked + .payment-card span{color:var(--primary-dark)}
+.order-summary{background:var(--bg);padding:18px;border-radius:12px;margin:20px 0}
+.order-summary h4{font-size:15px;color:var(--secondary);margin-bottom:12px}
+.order-summary-item{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:var(--text)}
+.order-summary-total{display:flex;justify-content:space-between;padding-top:12px;margin-top:8px;border-top:1px dashed var(--border);font-weight:700;color:var(--secondary)}
+.order-summary-total span:last-child{color:var(--primary);font-size:17px}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--secondary);color:#fff;padding:14px 24px;border-radius:12px;font-size:14px;font-weight:500;z-index:5000;opacity:0;transition:all .4s;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.success{background:var(--primary)}
+.toast.error{background:var(--danger)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hero-content,.tentang-content{grid-template-columns:1fr;gap:30px}
+  .hero-text h1{font-size:34px}
+  .section-header h2{font-size:28px}
+  .tentang-text h2{font-size:28px}
+  .hero-image{order:-1}
+  .hero-image img,.tentang-image img{height:300px}
+}
+@media(max-width:640px){
+  .nav-menu{position:fixed;top:75px;left:0;right:0;background:#fff;flex-direction:column;padding:20px;gap:15px;box-shadow:var(--shadow);transform:translateY(-150%);transition:transform .3s;z-index:999}
+  .nav-menu.active{transform:translateY(0)}
+  .menu-toggle{display:block}
+  .hero-text h1{font-size:28px}
+  .hero-stats{gap:20px}
+  .hero-stats b{font-size:20px}
+  .payment-options{grid-template-columns:1fr}
+  .produk-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px}
+  .produk-image{height:160px}
+  .produk-body{padding:12px}
+  .produk-nama{font-size:14px}
+  .produk-harga{font-size:16px}
+  .hero-image img,.tentang-image img{height:220px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo">
+      <i class="fas fa-store"></i>
+      <span>UMKM <b>ROBBANI</b></span>
+    </a>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#beranda">Beranda</a>
+      <a href="#katalog">Katalog</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="beranda">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <span class="badge">✨ Snack Tradisional Berkualitas</span>
+      <h1>Camilan Khas,<br>Produk <span class="highlight">UMKM ROBBANI</span></h1>
+      <p>Aneka camilan tradisional pilihan dengan cita rasa otentik dan harga terjangkau. Pesan langsung via WhatsApp, bayar sesuai keinginanmu.</p>
+      <div class="hero-buttons">
+        <a href="#katalog" class="btn btn-primary"><i class="fas fa-shopping-bag"></i> Lihat Katalog</a>
+        <a href="#tentang" class="btn btn-outline"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>500+</b><span>Pelanggan</span></div>
+        <div><b>8+</b><span>Produk</span></div>
+        <div><b>4.9★</b><span>Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/toko.jpg" alt="Toko UMKM ROBBANI">
+    </div>
+  </div>
+</section>
+
+<!-- ===== KATALOG ===== -->
+<section class="katalog" id="katalog">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Katalog Produk</span>
+      <h2>Camilan <span class="highlight">Pilihan</span></h2>
+      <p>Pilih camilan favoritmu dan tambahkan ke keranjang</p>
+    </div>
+    <div class="filter-kategori" id="filterKategori">
+      <button class="filter-btn active" data-kategori="semua">Semua</button>
+      <button class="filter-btn" data-kategori="keripik">Keripik</button>
+      <button class="filter-btn" data-kategori="tradisional">Tradisional</button>
+      <button class="filter-btn" data-kategori="manis">Manis</button>
+    </div>
+    <div class="produk-grid" id="produkGrid"></div>
+  </div>
+</section>
+
+<!-- ===== TENTANG ===== -->
+<section class="tentang" id="tentang">
+  <div class="container tentang-content">
+    <div class="tentang-image">
+      <img src="images/klanting-getuk.jpg" alt="Produk UMKM ROBBANI">
+    </div>
+    <div class="tentang-text">
+      <span class="section-badge">Tentang Kami</span>
+      <h2>UMKM <span class="highlight">ROBBANI</span></h2>
+      <p>UMKM ROBBANI adalah usaha rumahan yang menyediakan aneka camilan tradisional berkualitas dengan cita rasa otentik. Dibuat dengan bahan pilihan dan resep turun-temurun untuk menghadirkan camilan terbaik bagi keluarga Anda.</p>
+      <ul class="tentang-list">
+        <li><i class="fas fa-check-circle"></i> Bahan Pilihan & Berkualitas</li>
+        <li><i class="fas fa-check-circle"></i> Dibuat Fresh Setiap Hari</li>
+        <li><i class="fas fa-check-circle"></i> Tanpa Pengawet Berbahaya</li>
+        <li><i class="fas fa-check-circle"></i> Cita Rasa Otentik Tradisional</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KONTAK ===== -->
+<section class="kontak" id="kontak">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Hubungi Kami</span>
+      <h2>Kontak <span class="highlight">UMKM ROBBANI</span></h2>
+    </div>
+    <div class="kontak-grid">
+      <a href="https://wa.me/62895610112644" target="_blank" class="kontak-card">
+        <i class="fab fa-whatsapp"></i>
+        <h3>WhatsApp</h3>
+        <p>0895-6101-12644</p>
+      </a>
+      <a href="mailto:umkmrobbani@gmail.com" class="kontak-card">
+        <i class="fas fa-envelope"></i>
+        <h3>Email</h3>
+        <p>umkmrobbani@gmail.com</p>
+      </a>
+      <a href="https://instagram.com/umkmrobbani" target="_blank" class="kontak-card">
+        <i class="fab fa-instagram"></i>
+        <h3>Instagram</h3>
+        <p>@umkmrobbani</p>
+      </a>
+      <div class="kontak-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Alamat</h3>
+        <p>Pringsewu, Lampung</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 <b>UMKM ROBBANI</b>. All rights reserved. Made with ❤️</p>
+  </div>
+</footer>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-cart"></i> Keranjang</h3>
+    <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total:</span>
+      <b id="cartTotal">Rp 0</b>
+    </div>
+    <button class="btn btn-primary btn-full" id="checkoutBtn">
+      <i class="fas fa-credit-card"></i> Checkout
+    </button>
+  </div>
+</aside>
+
+<!-- ===== CHECKOUT MODAL ===== -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3><i class="fas fa-clipboard-check"></i> Form Pemesanan</h3>
+      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    </div>
+    <form id="checkoutForm" class="modal-body">
+      <div class="form-group">
+        <label>Nama Lengkap *</label>
+        <input type="text" id="namaPelanggan" required placeholder="Masukkan nama lengkap">
+      </div>
+      <div class="form-group">
+        <label>No. WhatsApp *</label>
+        <input type="tel" id="waPelanggan" required placeholder="08xxxxxxxxxx">
+      </div>
+      <div class="form-group">
+        <label>Alamat Pengiriman *</label>
+        <textarea id="alamatPelanggan" required rows="3" placeholder="Nama jalan, RT/RW, kelurahan, kecamatan, kota, kode pos"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Metode Pembayaran *</label>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="pembayaran" value="Transfer Bank" checked>
+            <div class="payment-card"><i class="fas fa-university"></i><span>Transfer Bank</span></div>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="pembayaran" value="QRIS">
+            <div class="payment-card"><i class="fas fa-qrcode"></i><span>QRIS</span></div>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="pembayaran" value="COD">
+            <div class="payment-card"><i class="fas fa-truck"></i><span>COD</span></div>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Catatan (opsional)</label>
+        <textarea id="catatanPelanggan" rows="2" placeholder="Contoh: pedas, tanpa gula, dll."></textarea>
+      </div>
+      <div class="order-summary">
+        <h4>Ringkasan Pesanan</h4>
+        <div id="orderSummary"></div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">
+        <i class="fab fa-whatsapp"></i> Kirim Pesanan via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   ⚙️ KONFIGURASI
+   ========================================================= */
+const KONFIGURASI = {
+  nomorWA: "62895610112644",
+  namaToko: "UMKM ROBBANI",
+  rekeningBank: "BCA 1234567890 a/n UMKM ROBBANI",
+  qrisInfo: "Scan QRIS di kasir / minta ke admin"
+};
+
+/* =========================================================
+   📦 DATA PRODUK — Foto asli kamu
+   ========================================================= */
+const PRODUK = [
+  { 
+    id: 1, 
+    nama: "Klanting Getuk", 
+    deskripsi: "Getuk klanting tradisional, gurih renyah tanpa pengawet", 
+    harga: 15000, 
+    kategori: "tradisional",
+    gambar: "images/klanting-getuk.jpg"
+  },
+  { 
+    id: 2, 
+    nama: "Keripik Singkong", 
+    deskripsi: "Keripik singkong renyah dengan bumbu pedas manis legit", 
+    harga: 12000, 
+    kategori: "keripik",
+    gambar: "images/keripik-singkong.jpg"
+  },
+  { 
+    id: 3, 
+    nama: "Rengginang", 
+    deskripsi: "Rengginang ketan gurih & renyah, camilan khas tradisional", 
+    harga: 18000, 
+    kategori: "tradisional",
+    gambar: "images/rengginang.jpg"
+  },
+  { 
+    id: 4, 
+    nama: "Keripik Pisang", 
+    deskripsi: "Keripik pisang manis renyah, cocok untuk teman santai", 
+    harga: 13000, 
+    kategori: "keripik",
+    gambar: "images/keripik-pisang.jpg"
+  },
+  { 
+    id: 5, 
+    nama: "Marning Jagung", 
+    deskripsi: "Marning jagung gurih & renyah, camilan sehat tanpa MSG", 
+    harga: 14000, 
+    kategori: "tradisional",
+    gambar: "images/marning-jagung.jpg"
+  },
+  { 
+    id: 6, 
+    nama: "Untir-Untir", 
+    deskripsi: "Untir-untir manis kenyal dengan taburan wijen, jajanan klasik", 
+    harga: 10000, 
+    kategori: "manis",
+    gambar: "images/untir-untir.jpg"
+  },
+  { 
+    id: 7, 
+    nama: "Keripik Sanjay", 
+    deskripsi: "Keripik sanjay khas dengan cita rasa manis pedas legit", 
+    harga: 16000, 
+    kategori: "keripik",
+    gambar: "images/keripik-sanjay.jpg"
+  },
+  { 
+    id: 8, 
+    nama: "Sale Pisang", 
+    deskripsi: "Sale pisang manis legit, dibuat dari pisang pilihan", 
+    harga: 20000, 
+    kategori: "manis",
+    gambar: "images/sale-pisang.jpg"
+  }
+];
+
+/* =========================================================
+   🛒 STATE KERANJANG
+   ========================================================= */
+let keranjang = JSON.parse(localStorage.getItem('robbani_cart') || '[]');
+
+/* =========================================================
+   💰 FORMAT RUPIAH
+   ========================================================= */
+const rupiah = (n) => 'Rp ' + n.toLocaleString('id-ID');
+
+/* =========================================================
+   🎨 RENDER PRODUK
+   ========================================================= */
+function renderProduk(kategori = 'semua') {
+  const grid = document.getElementById('produkGrid');
+  const data = kategori === 'semua' ? PRODUK : PRODUK.filter(p => p.kategori === kategori);
+  
+  if (data.length === 0) {
+    grid.innerHTML = '<p style="text-align:center;grid-column:1/-1;color:#64748b">Belum ada produk di kategori ini.</p>';
+    return;
+  }
+  
+  grid.innerHTML = data.map(p => `
+    <div class="produk-card">
+      <div class="produk-image">
+        <img src="${p.gambar}" alt="${p.nama}" onerror="this.src='https://via.placeholder.com/300x220/f1f5f9/cbd5e1?text=Foto+Belum+Ada'">
+        <span class="produk-kategori">${p.kategori}</span>
+      </div>
+      <div class="produk-body">
+        <h3 class="produk-nama">${p.nama}</h3>
+        <p class="produk-deskripsi">${p.deskripsi}</p>
+        <div class="produk-harga">${rupiah(p.harga)}</div>
+        <button class="btn-tambah" onclick="tambahKeKeranjang(${p.id})">
+          <i class="fas fa-cart-plus"></i> Tambah
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* =========================================================
+   ➕ TAMBAH KE KERANJANG
+   ========================================================= */
+function tambahKeKeranjang(id) {
+  const produk = PRODUK.find(p => p.id === id);
+  if (!produk) return;
+  
+  const existing = keranjang.find(item => item.id === id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    keranjang.push({ ...produk, qty: 1 });
+  }
+  
+  simpanKeranjang();
+  renderKeranjang();
+  updateCartCount();
+  showToast(`${produk.nama} ditambahkan ke keranjang`, 'success');
+}
+
+/* =========================================================
+   💾 SIMPAN KE LOCALSTORAGE
+   ========================================================= */
+function simpanKeranjang() {
+  localStorage.setItem('robbani_cart', JSON.stringify(keranjang));
+}
+
+/* =========================================================
+   🔢 UPDATE BADGE COUNT
+   ========================================================= */
+function updateCartCount() {
+  const total = keranjang.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+}
+
+/* =========================================================
+   🎨 RENDER KERANJANG
+   ========================================================= */
+function renderKeranjang() {
+  const container = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotal');
+  
+  if (keranjang.length === 0) {
+    container.innerHTML = `
+      <div class="cart-empty">
+        <i class="fas fa-shopping-basket"></i>
+        <p>Keranjang masih kosong</p>
+        <p style="font-size:13px;margin-top:5px">Yuk pilih camilan favoritmu!</p>
+      </div>`;
+    totalEl.textContent = 'Rp 0';
+    return;
+  }
+  
+  container.innerHTML = keranjang.map(item => `
+    <div class="cart-item">
+      <img src="${item.gambar}" alt="${item.nama}" onerror="this.src='https://via.placeholder.com/70/f1f5f9/cbd5e1?text=?'">
+      <div class="cart-item-info">
+        <div class="cart-item-nama">${item.nama}</div>
+        <div class="cart-item-harga">${rupiah(item.harga)}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="ubahQty(${item.id}, -1)"><i class="fas fa-minus"></i></button>
+          <span class="qty-value">${item.qty}</span>
+          <button class="qty-btn" onclick="ubahQty(${item.id}, 1)"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+      <button class="cart-item-remove" onclick="hapusItem(${item.id})"><i class="fas fa-trash"></i></button>
+    </div>
+  `).join('');
+  
+  const total = keranjang.reduce((sum, item) => sum + item.harga * item.qty, 0);
+  totalEl.textContent = rupiah(total);
+}
+
+/* =========================================================
+   🔄 UBAH QTY
+   ========================================================= */
+function ubahQty(id, delta) {
+  const item = keranjang.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    keranjang = keranjang.filter(i => i.id !== id);
+  }
+  simpanKeranjang();
+  renderKeranjang();
+  updateCartCount();
+}
+
+/* =========================================================
+   🗑️ HAPUS ITEM
+   ========================================================= */
+function hapusItem(id) {
+  keranjang = keranjang.filter(i => i.id !== id);
+  simpanKeranjang();
+  renderKeranjang();
+  updateCartCount();
+  showToast('Produk dihapus dari keranjang', 'error');
+}
+
+/* =========================================================
+   🍞 TOAST NOTIFIKASI
+   ========================================================= */
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+  toast.className = `toast ${type} show`;
+  toast.innerHTML = `<i class="fas ${icon}"></i> ${msg}`;
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+/* =========================================================
+   🪟 BUKA/TUTUP KERANJANG
+   ========================================================= */
+const cartSidebar = document.getElementById('cartSidebar');
+const cartOverlay = document.getElementById('cartOverlay');
+
+function bukaKeranjang() {
+  cartSidebar.classList.add('active');
+  cartOverlay.classList.add('active');
+}
+function tutupKeranjang() {
+  cartSidebar.classList.remove('active');
+  cartOverlay.classList.remove('active');
+}
+
+document.getElementById('cartBtn').onclick = bukaKeranjang;
+document.getElementById('cartClose').onclick = tutupKeranjang;
+cartOverlay.onclick = tutupKeranjang;
+
+/* =========================================================
+   📋 CHECKOUT — BUKA MODAL
+   ========================================================= */
+const checkoutModal = document.getElementById('checkoutModal');
+
+document.getElementById('checkoutBtn').onclick = () => {
+  if (keranjang.length === 0) {
+    showToast('Keranjang masih kosong!', 'error');
+    return;
+  }
+  renderOrderSummary();
+  checkoutModal.classList.add('active');
+  tutupKeranjang();
+};
+
+document.getElementById('modalClose').onclick = () => {
+  checkoutModal.classList.remove('active');
+};
+
+checkoutModal.onclick = (e) => {
+  if (e.target === checkoutModal) checkoutModal.classList.remove('active');
+};
+
+/* =========================================================
+   📊 RENDER RINGKASAN PESANAN DI MODAL
+   ========================================================= */
+function renderOrderSummary() {
+  const el = document.getElementById('orderSummary');
+  const total = keranjang.reduce((sum, item) => sum + item.harga * item.qty, 0);
+  
+  el.innerHTML = keranjang.map(item => `
+    <div class="order-summary-item">
+      <span>${item.nama} × ${item.qty}</span>
+      <span>${rupiah(item.harga * item.qty)}</span>
+    </div>
+  `).join('') + `
+    <div class="order-summary-total">
+      <span>Total Bayar</span>
+      <span>${rupiah(total)}</span>
+    </div>
+  `;
+}
+
+/* =========================================================
+   📤 SUBMIT FORM → KIRIM KE WHATSAPP
+   ========================================================= */
+document.getElementById('checkoutForm').onsubmit = (e) => {
+  e.preventDefault();
+  
+  const nama = document.getElementById('namaPelanggan').value.trim();
+  const wa = document.getElementById('waPelanggan').value.trim();
+  const alamat = document.getElementById('alamatPelanggan').value.trim();
+  const catatan = document.getElementById('catatanPelanggan').value.trim();
+  const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
+  
+  if (keranjang.length === 0) {
+    showToast('Keranjang kosong!', 'error');
+    return;
+  }
+  
+  const total = keranjang.reduce((sum, item) => sum + item.harga * item.qty, 0);
+  const orderId = 'RBB-' + Date.now().toString().slice(-8);
+  const tanggal = new Date().toLocaleString('id-ID', {
+    day: '2-digit', month: 'long', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+  
+  let pesan = `*🛒 PESANAN BARU - ${KONFIGURASI.namaToko}*\n\n`;
+  pesan += `*No. Pesanan:* ${orderId}\n`;
+  pesan += `*Tanggal:* ${tanggal}\n\n`;
+  pesan += `*━━━ DATA PEMBELI ━━━*\n`;
+  pesan += `👤 Nama: ${nama}\n`;
+  pesan += `📱 WA: ${wa}\n`;
+  pesan += `📍 Alamat: ${alamat}\n\n`;
+  pesan += `*━━━ DETAIL PESANAN ━━━*\n`;
+  
+  keranjang.forEach((item, i) => {
+    pesan += `${i + 1}. ${item.nama}\n`;
+    pesan += `   ${item.qty} × ${rupiah(item.harga)} = ${rupiah(item.harga * item.qty)}\n`;
+  });
+  
+  pesan += `\n*━━━ PEMBAYARAN ━━━*\n`;
+  pesan += `💰 Total: *${rupiah(total)}*\n`;
+  pesan += `💳 Metode: ${pembayaran}\n`;
+  
+  if (pembayaran === 'Transfer Bank') {
+    pesan += `\n📌 *Info Transfer:*\n${KONFIGURASI.rekeningBank}\n`;
+  } else if (pembayaran === 'QRIS') {
+    pesan += `\n📌 *Info QRIS:*\n${KONFIGURASI.qrisInfo}\n`;
+  } else if (pembayaran === 'COD') {
+    pesan += `\n📌 Bayar saat barang diterima (COD)\n`;
+  }
+  
+  if (catatan) {
+    pesan += `\n📝 *Catatan:*\n${catatan}\n`;
+  }
+  
+  pesan += `\nTerima kasih sudah berbelanja di ${KONFIGURASI.namaToko}! 🙏`;
+  
+  const url = `https://wa.me/${KONFIGURASI.nomorWA}?text=${encodeURIComponent(pesan)}`;
+  window.open(url, '_blank');
+  
+  showToast('Pesanan dikirim ke WhatsApp!', 'success');
+  keranjang = [];
+  simpanKeranjang();
+  renderKeranjang();
+  updateCartCount();
+  checkoutModal.classList.remove('active');
+  document.getElementById('checkoutForm').reset();
+};
+
+/* =========================================================
+   🎛️ FILTER KATEGORI
+   ========================================================= */
+document.getElementById('filterKategori').onclick = (e) => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  renderProduk(e.target.dataset.kategori);
+};
+
+/* =========================================================
+   📱 TOGGLE MENU MOBILE
+   ========================================================= */
+document.getElementById('menuToggle').onclick = () => {
+  document.getElementById('navMenu').classList.toggle('active');
+};
+
+document.querySelectorAll('.nav-menu a').forEach(a => {
+  a.onclick = () => document.getElementById('navMenu').classList.remove('active');
+});
+
+/* =========================================================
+   🚀 INIT
+   ========================================================= */
+renderProduk();
+renderKeranjang();
+updateCartCount();
+
+console.log('%c🛒 UMKM ROBBANI siap!', 'background:#10b981;color:#fff;padding:8px 16px;border-radius:6px;font-weight:bold');
+</script>
+</body>
+</html>
